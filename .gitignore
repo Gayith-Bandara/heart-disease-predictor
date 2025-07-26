@@ -1,0 +1,59 @@
+# ----------------------------------------
+# Node.js / React frontend (client)
+# ----------------------------------------
+client/node_modules/
+client/build/
+client/.env
+
+# If using Vite
+client/dist/
+
+# Yarn lock files (optional)
+client/yarn.lock
+
+# ----------------------------------------
+# Node.js backend (server)
+# ----------------------------------------
+server/node_modules/
+server/.env
+
+# Logs
+server/logs/
+*.log
+
+# ----------------------------------------
+# Python ML service (ml-service)
+# ----------------------------------------
+ml-service/__pycache__/
+ml-service/env/
+ml-service/venv/
+ml-service/.venv/
+ml-service/.ipynb_checkpoints
+ml-service/*.pyc
+ml-service/*.pyo
+ml-service/*.pyd
+
+# Model files & data
+ml-service/*.pkl
+ml-service/*.joblib
+ml-service/*.csv
+ml-service/*.xlsx
+ml-service/kaggle.json
+
+# ----------------------------------------
+# Common
+# ----------------------------------------
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Logs at root
+logs/
+*.log
+
+# Local env at root
+.env
+
