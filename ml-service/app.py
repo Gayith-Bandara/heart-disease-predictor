@@ -14,27 +14,24 @@ def index():
 def predict():
     data = request.get_json(force=True)
 
-    #['age', 'trestbps', 'chol', 'thalch', 'oldpeak', 'sex', 'fbs', 'exang', 'cp', 'restecg', 'slope']
-
-    # sex - Male=1, Female=0
-    # fbs - True=1, False=0
-    # exang - True=1, False=0
-    # cp - typical angina=0, asymptomatic=3, non-anginal=2, atypical angina=1
-    # restecg - lv hypertrophy=2, normal=0, st-t abnormality=1
-    # slope - downsloping=2, flat=1, upsloping=0
-
     features = [
-        data['age'],
-        data['trestbps'],
-        data['chol'],
-        data['thalch'],
-        data['oldpeak'],
-        data['sex'],
-        data['fbs'],
-        data['exang'],
-        data['cp'],
-        data['restecg'],
-        data['slope']
+        data['BMI'],
+        data['Smoking'],
+        data['AlcoholDrinking'],
+        data['Stroke'],
+        data['PhysicalHealth'],
+        data['MentalHealth'],
+        data['DiffWalking'],
+        data['Sex'],
+        data['AgeCategory'],
+        data['Race'],
+        data['Diabetic'],
+        data['PhysicalActivity'],
+        data['GenHealth'],
+        data['SleepTime'],
+        data['Asthma'],
+        data['KidneyDisease'],
+        data['SkinCancer']
     ]
 
     input_array = np.array(features).reshape(1, -1)
