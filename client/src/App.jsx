@@ -1,11 +1,15 @@
 import './App.css'
-import Hero from './compoenents/Hero'
+import Hero from './components/Hero'
+import Navbar from './components/Navbar'
+import UserGuide from './components/UserGuide'
 
 function App() {
   return (
-    <>
-    <Hero/>
-    </>
+    <div>
+      <Navbar />
+      <Hero/>
+      <UserGuide />
+    </div>
   )
 }
 
