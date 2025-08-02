@@ -90,11 +90,18 @@ export const StickyScroll = ({
     setActiveCard(closestBreakpointIndex);
   });
 
-  const backgroundColors = [
-    "#f5f5f5", // slate-900
-    "#d4d4d4", // black
-    "#bdbdbd", // neutral-900
-  ];
+  // const backgroundColors = [
+  //   "#f5f5f5", // slate-900
+  //   "#d4d4d4", // black
+  //   "#bdbdbd", // neutral-900
+  // ];
+
+  // const backgroundColors = [
+  //   "#0f172a", // slate-900
+  //   "#000000", // black
+  //   "#171717", // neutral-900
+  // ];
+
   const linearGradients = [
     "linear-gradient(to bottom right, #06b6d4, #10b981)", // cyan-500 to emerald-500
     "linear-gradient(to bottom right, #ec4899, #6366f1)", // pink-500 to indigo-500
@@ -109,9 +116,9 @@ export const StickyScroll = ({
 
   return (
     <motion.div
-      animate={{
-        backgroundColor: backgroundColors[activeCard % backgroundColors.length],
-      }}
+      // animate={{
+      //   backgroundColor: backgroundColors[activeCard % backgroundColors.length],
+      // }}
       //h-[30rem] overflow-y-auto
       className="relative flex justify-center space-x-10 rounded-md p-20"
       ref={ref}>
@@ -126,7 +133,7 @@ export const StickyScroll = ({
                 animate={{
                   opacity: activeCard === index ? 1 : 0.3,
                 }}
-                className="text-2xl font-bold text-gray-800">
+                className="text-2xl font-bold text-gray-800 dark:text-slate-100">
                 {item.title}
               </motion.h2>
               <motion.p
@@ -136,7 +143,7 @@ export const StickyScroll = ({
                 animate={{
                   opacity: activeCard === index ? 1 : 0,
                 }}
-                className="text-kg mt-10 max-w-sm text-gray-900">
+                className="text-kg mt-10 max-w-sm text-gray-900 dark:text-slate-300">
                 {item.description}
               </motion.p>
             </div>
