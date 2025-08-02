@@ -4,24 +4,16 @@ import { motion } from "motion/react";
 
 const Hero = () => {
   return (
-    <div className="relative mx-auto my-1 flex max-w-7xl flex-col items-center justify-center">
+    <div className="relative mx-auto my-1 flex max-w-7xl flex-col ">
 
-      {/* <div className="absolute inset-y-0 left-0 h-full w-px bg-neutral-200/80 dark:bg-neutral-800/80">
-        <div className="absolute top-0 h-40 w-px bg-gradient-to-b from-transparent via-blue-500 to-transparent" />
+      <div className="size-50 rounded-full mx-auto pt-10">
+          <img src="src/assets/logo.png" alt="logo" />
       </div>
 
-      <div className="absolute inset-y-0 right-0 h-full w-px bg-neutral-200/80 dark:bg-neutral-800/80">
-        <div className="absolute h-40 w-px bg-gradient-to-b from-transparent via-blue-500 to-transparent" />
-      </div>
-
-      <div className="absolute inset-x-0 bottom-0 h-px w-full bg-neutral-200/80 dark:bg-neutral-800/80">
-        <div className="absolute mx-auto h-px w-40 bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
-      </div> */}
-
-      <div className="px-4 py-10 md:py-20">
+      <div className="px-4 py-10 md:py-20  text-center items-center justify-center">
         <h1
           className="relative z-10 mx-auto max-w-4xl text-center text-2xl font-bold text-red-700 md:text-4xl lg:text-7xl dark:text-red-300">
-          {"Your Heart Matters Predict, Prevent, Protect."
+          {"Your Heart Matters Predict, Prevent & Protect."
             .split(" ")
             .map((word, index) => (
 
@@ -40,6 +32,7 @@ const Hero = () => {
 
             ))}
         </h1>
+        
 
         <motion.p
           initial={{
@@ -52,7 +45,7 @@ const Hero = () => {
             duration: 0.3,
             delay: 0.8,
           }}
-          className="relative z-10 mx-auto max-w-xl py-4 text-center text-lg font-normal text-neutral-600 dark:text-neutral-400">
+          className="relative z-10 mx-auto max-w-xl py-4 text-center text-lg font-normal text-gray-800 dark:text-slate-100">
           Answer a few simple questions about your health and lifestyle, and instantly receive a personalized risk prediction for heart disease. It’s fast, secure, and designed to help you take control of your well-being.
         </motion.p>
 
@@ -78,6 +71,7 @@ const Hero = () => {
           </button>
 
         </motion.div>
+
 
         {/* <motion.div
           initial={{
