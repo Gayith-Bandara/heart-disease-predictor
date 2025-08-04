@@ -1,9 +1,10 @@
 import './App.css'
-import Footer from './components/Footer'
-import Hero from './components/Hero'
-import Navbar from './components/Navbar'
-import Testimonials from './components/Testimonials'
-import UserGuide from './components/UserGuide'
+import Footer from './components/sections/Footer'
+import Hero from './components/sections/Hero'
+import Navbar from './components/sections/Navbar'
+import PredictorForm from './components/sections/PredictorForm'
+import Testimonials from './components/sections/Testimonials'
+import UserGuide from './components/sections/UserGuide'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Hero/>
       <UserGuide />
       <Testimonials />
+      <PredictorForm />
       <Footer />
     </div>
   )

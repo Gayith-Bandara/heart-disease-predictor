@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useMotionValueEvent, useScroll } from "motion/react";
 import { motion } from "motion/react";
-import { cn } from "../lib/utils";
+import { cn } from "../../lib/utils";
 
 const content = [
   {
@@ -154,7 +154,7 @@ export const StickyScroll = ({
       <div
         style={{ background: backgroundGradient }}
         className={cn(
-          "sticky top-20 hidden h-170 w-170 overflow-hidden rounded-md bg-white lg:block",
+          "sticky top-15 hidden h-170 w-170 overflow-hidden rounded-md bg-white lg:block",
           contentClassName
         )}>
         {content[activeCard].content ?? null}
