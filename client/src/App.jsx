@@ -8,7 +8,7 @@ import UserGuide from './components/sections/UserGuide'
 
 function App() {
   return (
-    <div className="dark:bg-black">
+    <div className="dark:bg-black relative">
       <Navbar />
       <Hero/>
       <UserGuide />

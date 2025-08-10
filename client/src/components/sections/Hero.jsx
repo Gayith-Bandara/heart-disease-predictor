@@ -10,7 +10,7 @@ const Hero = () => {
           <img src="src/assets/logo.png" alt="logo" />
       </div>
 
-      <div className="px-4 py-10 md:py-20  text-center items-center justify-center">
+      <div className="relative px-4 py-10 md:py-20  text-center items-center justify-center">
         <h1
           className="relative z-10 mx-auto max-w-4xl text-center text-2xl font-bold text-red-700 md:text-4xl lg:text-7xl dark:text-red-300">
           {"Your Heart Matters Predict, Prevent & Protect."
@@ -26,7 +26,7 @@ const Hero = () => {
                   delay: index * 0.1,
                   ease: "easeInOut",
                 }}
-                className="mr-2 inline-block">
+                className="mr-2 inline-block relative">
                 {word}
               </motion.span>
 
@@ -62,11 +62,11 @@ const Hero = () => {
           }}
           className="relative z-10 mt-8 flex flex-wrap items-center justify-center gap-4">
 
-          <button className="w-60 transform rounded-lg bg-black px-6 py-2 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200">
+          <button className="relative w-60 transform rounded-lg bg-black px-6 py-2 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200">
             Explore Now
           </button>
 
-          <button className="w-60 transform rounded-lg border border-gray-300 bg-white px-6 py-2 font-medium text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 dark:border-gray-700 dark:bg-black dark:text-white dark:hover:bg-gray-900">
+          <button className="relative w-60 transform rounded-lg border border-gray-300 bg-white px-6 py-2 font-medium text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 dark:border-gray-700 dark:bg-black dark:text-white dark:hover:bg-gray-900">
             Contact Support
           </button>
 

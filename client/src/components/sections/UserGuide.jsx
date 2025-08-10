@@ -11,35 +11,20 @@ const content = [
     description:
       "Accurately enter your details, make sure you fill each field as accurately as you can and make sure you fill all entries.",
     content: (
-      <div
-        className="flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] text-white">
-        Collaborative Editing
+      <div className="flex h-full w-full items-center justify-center">
+        <img src="src/assets/form-light-mode.png" className="dark:hidden" alt="Logo Light" />
+        <img src="src/assets/form-dark-mode.png" className="hidden dark:block" alt="Logo Dark" />
       </div>
     ),
   },
-  // {
-  //   title: "Real time changes",
-  //   description:
-  //     "See changes as they happen. With our platform, you can track every modification in real time. No more confusion about the latest version of your project. Say goodbye to the chaos of version control and embrace the simplicity of real-time updates.",
-  //   content: (
-  //     <div className="flex h-full w-full items-center justify-center text-white">
-  //       <img
-  //         src="/linear.webp"
-  //         width={300}
-  //         height={300}
-  //         className="h-full w-full object-cover"
-  //         alt="linear board demo" />
-  //     </div>
-  //   ),
-  // },
   {
     title: "Click the submit button",
     description:
       "Once all the entries are filled as accurately as possible, press on the check button and wait for the magic to happen",
     content: (
-      <div
-        className="flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--orange-500),var(--yellow-500))] text-white">
-        Version control
+      <div className="flex h-full w-full items-center justify-center">
+        <img src="src/assets/button-light-mode.png" className="dark:hidden" alt="Logo Light" />
+        <img src="src/assets/button-dark-mode.png" className="hidden dark:block" alt="Logo Dark" />
       </div>
     ),
   },
@@ -103,9 +88,9 @@ export const StickyScroll = ({
   // ];
 
   const linearGradients = [
-    "linear-gradient(to bottom right, #06b6d4, #10b981)", // cyan-500 to emerald-500
-    "linear-gradient(to bottom right, #ec4899, #6366f1)", // pink-500 to indigo-500
-    "linear-gradient(to bottom right, #f97316, #eab308)", // orange-500 to yellow-500
+    "linear-gradient(to bottom right, white, red)", 
+    "linear-gradient(to bottom right, white, red)", 
+    "linear-gradient(to bottom right, white, red)", 
   ];
 
   const [backgroundGradient, setBackgroundGradient] = useState(linearGradients[0]);
