@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 
 const Hero = () => {
   return (
-    <div className="relative mx-auto my-1 flex max-w-7xl flex-col ">
+    <div className="relative mx-auto my-1 flex max-w-7xl flex-col " name="hero">
 
       <div className="size-50 rounded-full mx-auto pt-10">
           <img src="src/assets/logo.png" alt="logo" />

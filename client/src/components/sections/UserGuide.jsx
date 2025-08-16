@@ -42,7 +42,7 @@ const content = [
 ];
 const UserGuide = () => {
   return (
-    <div className="w-full py-4">
+    <div className="w-full py-4" name="userGuide">
       <StickyScroll content={content} />
     </div>
   );

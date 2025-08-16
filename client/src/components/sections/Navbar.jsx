@@ -1,5 +1,7 @@
 "use client";
 
+import { Link } from "react-scroll";
+
 const Navbar = () => {
   return (
     <nav
@@ -9,18 +11,18 @@ const Navbar = () => {
       </div>
       <div className="px-4">
         <ul className="flex gap-10 text-gray-700 dark:text-gray-300">
-            <li className="hover:cursor-pointer hover:text-red-400">
+            <Link className="hover:cursor-pointer hover:text-red-400" to="hero" smooth={true} duration={500}>
                 Home
-            </li>
-            <li className="hover:cursor-pointer hover:text-red-400">
+            </Link>
+            <Link className="hover:cursor-pointer hover:text-red-400" to="userGuide" smooth={true} duration={500}>
                 How to use
-            </li>
-            <li className="hover:cursor-pointer hover:text-red-400">
+            </Link>
+            <Link className="hover:cursor-pointer hover:text-red-400" to="testimonials" smooth={true} duration={1500}>
                 Testimonials
-            </li>
-            <li className="hover:cursor-pointer hover:text-red-400">
+            </Link>
+            <Link className="hover:cursor-pointer hover:text-red-400" to="predictorform" smooth={true} duration={1500}>
                 Predict
-            </li>
+            </Link>
         </ul>
       </div>
       {/* <button

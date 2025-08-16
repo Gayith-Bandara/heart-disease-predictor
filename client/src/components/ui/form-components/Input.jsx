@@ -43,6 +43,7 @@ const Input = React.forwardRef(({ className, type, ...props }, ref) => {
           className
         )}
         ref={ref}
+        autoComplete="off"
         {...props} />
     </motion.div>
   );

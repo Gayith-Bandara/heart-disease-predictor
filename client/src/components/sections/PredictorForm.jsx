@@ -5,8 +5,9 @@ import { Input } from "../ui/form-components/Input";
 import { cn } from "../../lib/utils";
 import Divider from "../ui/form-components/Divider"
 import RadioButton from "../ui/form-components/RadioButton";
-import { div } from "motion/react-client";
 import { useState } from 'react';
+import Error from "../ui/form-components/Error";
+import { scroller } from "react-scroll";
 
 const PredictorForm = () => {
   
@@ -14,20 +15,148 @@ const PredictorForm = () => {
     e.preventDefault();
     console.log("Form submitted");
     console.log(inputs);
+    validateForm();
   };
 
-  const [inputs, setInputs] = useState({});
+  const scrollToTop = () => {
+    scroller.scrollTo("heading", {
+      duration: 800,     
+      smooth: "easeInOut", 
+      offset: -50,       
+    });
+  };
+
+  const [inputs, setInputs] = useState({
+    firstname : "",
+    lastname : "",
+    email : "",
+    bmi : "",
+    phealth : "",
+    mhealth : "",
+    sleep : "",
+    smoking : "",
+    drinking : "",
+    stroke : "",
+    diffwalking : "",
+    sex : "",
+    diabetes : "",
+    exercise : "",
+    asthma : "",
+    kidneydisease : "",
+    skincancer : "",
+    race : "",
+    genhealth : "",
+    agecategory : ""
+  });
+
+  const [errors, setErrors] = useState({});
 
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    setInputs(values => ({...values, [name]: value}))
+
+    setInputs(values => ({...values, [name]: value}));
+
+    const error = validateField(name, value);
+    setErrors(values => ({...values, [name]:error}));
   }
 
+  const validateField = (name, value) => {
+    
+    let error = "";
+    
+    if(name === "firstname" || name === "lastname"){
+      if(!/^[A-Za-z]+$/.test(value.trim())){
+        error = "Name should only contain letters";
+      }
+    }
+
+    if(name === "email"){
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())){
+        error = "Nmail should be in the correct format";
+      }
+    }
+
+    if(name === "bmi" && value.trim() !== ""){
+      const num = parseFloat(value);
+      
+      if(isNaN(num)){
+        error = "BMI must be a number";
+      }else if( num > 80 || num < 10){
+        error = "Please enter a valid BMI"
+      }
+    }
+
+    if(name === "phealth" || name === "mhealth"){
+      const num = parseFloat(value);
+
+      if(isNaN(num)){
+        error = "Should be a number";
+      }else if( num > 30 || num < 0){
+        error = "Should be a number from 0 to 30"
+      }
+    }
+
+    if(name === "sleep"){
+      const num = parseFloat(value);
+
+      if(isNaN(num)){
+        error = "Should be a number";
+      }else if( num < 1 || num > 16){
+        error = "Enter realistic sleep hours"
+      }
+    }
+
+    if(name === "firstname" || name === "email" || name === "bmi" || name === "phealth" || name === "mhealth" || name === "sleep"){
+      if(value.trim() === ""){
+        error = "This input field is required";
+      }
+    }else{
+      if(value.trim() === ""){
+        error = "";
+      }      
+    }
+    return error;
+  }
+
+  const validateForm = () => {
+    // check for empty fields
+    emptyFieldValidation();
+
+    if(checkForErrors()){
+      console.log("Errors found");
+      console.log(errors);
+      scrollToTop();
+    }else{
+      console.log("no errors found");
+    }
+  }
+
+  //sets error messages if the input field is empty
+  const emptyFieldValidation = () => {
+    for (let name in inputs){
+      if(!inputs[name]){
+        if(name === "lastname"){
+          continue;
+        }
+        setErrors(values => ({...values, [name]:"This field is required"}));
+      }
+    }
+  }
+
+  //checks whether there are any pending errors
+  const checkForErrors = () => {
+    for (let key in errors){
+      if(!errors[key]){
+        return true;
+      }
+    }
+    return true;
+  }
 
   return (
-    <div className="border border-2 my-10 mx-auto max-w-6xl rounded-none bg-white py-4 md:py-10 px-8 md:px-20 md:rounded-2xl  dark:bg-black border-gray-300 dark:border-gray-600">
-      <h2 className="relative mt-10 z-10 mx-auto max-w-4xl text-center text-xl font-bold text-gray-700 md:text-2xl lg:text-4xl dark:text-white">
+    <div className="border border-2 my-10 mx-auto max-w-6xl rounded-none bg-white py-4 md:py-10 px-8 md:px-20 md:rounded-2xl  dark:bg-black border-gray-300 dark:border-gray-600" name="predictorform">
+      <h2 className="relative mt-10 z-10 mx-auto max-w-4xl text-center text-xl font-bold text-gray-700 md:text-2xl lg:text-4xl dark:text-white" name="heading">
         Lets Dive In
       </h2>
       <p className="mt-2 pb-10 mx-auto max-w-sm text-sm text-neutral-600 dark:text-neutral-300">
@@ -44,25 +173,37 @@ const PredictorForm = () => {
                 <p className="mt-1 text-md/6 text-gray-600 dark:text-neutral-300">Just your name and email so we can stay connected and keep things organized. We promise to keep your info safe and private!</p>
               </div>
       
-              <div className="grid grid-cols-6 my-5">
-                <Label htmlFor="firstname" className="my-auto mr-auto">First name</Label>
+              <div className="relative grid grid-cols-6 my-5">
+                
+                <Label htmlFor="firstname" error={errors.firstname} >First name </Label>
+                
                 <div className="col-span-2 col-start-3">
-                  <Input id="firstname" placeholder="Tyler" type="text" name="firstname" value={inputs.firstname || ""} onChange={handleChange}/>
-                </div>                
+                  <Input id="firstname" placeholder="Tyler" type="text" name="firstname"  value={inputs.firstname || ""} onChange={handleChange}/>
+                </div>      
+
+                {errors.firstname && <Error message={errors.firstname}/>} 
               </div>
 
               <div className="grid grid-cols-6 my-5">
-                <Label htmlFor="lastname" className="my-auto mr-auto">Last name (Optional)</Label>
+
+                <Label htmlFor="lastname" error={errors.lastname}>Last name (Optional)</Label>
+
                 <div className="col-span-2 col-start-3">
                   <Input id="lastname" placeholder="Durden" type="text" name="lastname" value={inputs.lastname || ""} onChange={handleChange}/>
-                </div>                
+                </div>   
+
+                {errors.lastname && <Error message={errors.lastname}/>}
               </div>
 
               <div className="grid grid-cols-6 my-5">
-                <Label htmlFor="email" className="my-auto mr-auto">Email Address</Label>
-                <div className="col-span-3 col-start-3">
+
+                <Label htmlFor="email" error={errors.email}>Email Address</Label>
+
+                <div className="col-span-2 col-start-3">
                   <Input id="email" placeholder="fillformaccurately@hcare.com" type="email" name="email" value={inputs.email || ""} onChange={handleChange}/>
-                </div>                
+                </div>
+
+                {errors.email && <Error message={errors.email}/>}                
               </div> 
 
             </div>
@@ -73,43 +214,55 @@ const PredictorForm = () => {
               {/* title and descritpion */}
               <div className="text-start mb-10">
                 <h2 className="text-lg/7 font-semibold text-gray-900 dark:text-white">Health Information</h2>
-                <p className="mt-1 text-md/6 text-gray-600 dark:text-neutral-300">Please fill out all the medical details carefully — the more accurate your info, the better our prediction can be!</p>
+                <p className="mt-1 text-md/6 text-gray-600 dark:text-neutral-300">Please fill out all medical details carefully. <span className="text-rose-600 dark:text-rose-300">All fields are required</span> so we can give you the best prediction!</p>
               </div>
 
               {/* BMI */}
               <div className="grid grid-cols-6 my-5">
-                <Label htmlFor="bmi" className="my-auto mr-auto">Body Mass Index (BMI)</Label>
+
+                <Label htmlFor="bmi" error={errors.bmi}>Body Mass Index (BMI)</Label>
+
                 <div className="col-span-2 col-start-3">
                   <Input id="bmi" placeholder="your BMI" type="text" name="bmi" value={inputs.bmi || ""} onChange={handleChange}/>
-                </div>                
+                </div> 
+
+                {errors.bmi && <Error message={errors.bmi}/>}                             
               </div>
 
               {/* Physical Health */}
               <div className="grid grid-cols-6 my-5">
 
-                <Label htmlFor="phealth" className="my-auto col-span-2 pr-2 text-start leading-4">Days you felt physically unwell (last 30)</Label>
+                <Label htmlFor="phealth" error={errors.phealth} className="col-span-2 pr-2 leading-4">Days you felt physically unwell (last 30)</Label>
                 
                 <div className="col-span-2">
-                  <Input id="phealth" placeholder="number between 1-30" type="text" name="phealth" value={inputs.phealth || ""} onChange={handleChange}/>
-                </div>                
+                  <Input id="phealth" placeholder="number between 0-30" type="text" name="phealth" value={inputs.phealth || ""} onChange={handleChange}/>
+                </div> 
+
+                {errors.phealth && <Error message={errors.phealth}/>}               
               </div>
 
               {/* Mental Health */}
               <div className="grid grid-cols-6 my-5">
 
-                <Label htmlFor="mhealth" className="my-auto col-span-2 pr-2 text-start leading-4">Days you felt mentally unwell (last 30)</Label>
+                <Label htmlFor="mhealth" error={errors.mhealth} className="col-span-2 pr-2 leading-4">Days you felt mentally unwell (last 30)</Label>
                 
                 <div className="col-span-2">
-                  <Input id="mhealth" placeholder="number between 1-30" type="text" name="mhealth" value={inputs.mhealth || ""} onChange={handleChange}/>
-                </div>                
+                  <Input id="mhealth" placeholder="number between 0-30" type="text" name="mhealth" value={inputs.mhealth || ""} onChange={handleChange}/>
+                </div>     
+
+                {errors.mhealth && <Error message={errors.mhealth}/>}    
               </div>
 
               {/* Sleep */}
               <div className="grid grid-cols-6 my-5">
-                <Label htmlFor="sleep" className="my-auto col-span-2 pr-2 text-start leading-4">How many hours do you sleep on average?</Label>
+
+                <Label htmlFor="sleep" error={errors.sleep} className="col-span-2 pr-2 leading-4">How many hours do you sleep on average?</Label>
+
                 <div className="col-span-2 col-start-3">
                   <Input id="sleep" placeholder="hours" type="text" name="sleep" value={inputs.sleep || ""} onChange={handleChange}/>
-                </div>                
+                </div>               
+
+                {errors.sleep && <Error message={errors.sleep}/>} 
               </div>
 
               {/* Smoker */}
@@ -117,7 +270,7 @@ const PredictorForm = () => {
                 
                 {/* title and desicription */}
                 <div className="grid grid-cols-6 my-5">
-                  <Label htmlFor="firstname" className="my-auto col-span-2 pr-2 text-start leading-4">Do You Smoke?</Label>              
+                  <Label htmlFor="smoking" error={errors.smoking} className="col-span-2 pr-2 leading-4">Do You Smoke?</Label>              
 
                   <div className="col-span-4">
                     <p className="mt-1 text-start text-sm/6 text-gray-600 dark:text-neutral-300">Do you currently smoke cigarettes or use tobacco products?</p>
@@ -152,7 +305,7 @@ const PredictorForm = () => {
                 
                 {/* title and desicription */}
                 <div className="grid grid-cols-6 my-5">
-                  <Label htmlFor="firstname" className="my-auto col-span-2 pr-2 text-start leading-4">Do You Drink Alcohol?</Label>               
+                  <Label htmlFor="drinking" error={errors.drinking} className="col-span-2 pr-2 leading-4">Do You Drink Alcohol?</Label>               
 
                   <div className="col-span-4">
                     <p className="mt-1 text-start text-sm/6 text-gray-600 dark:text-neutral-300">Do you regularly consume alcoholic drinks?</p>
@@ -187,9 +340,7 @@ const PredictorForm = () => {
                 
                 {/* title and desicription */}
                 <div className="grid grid-cols-6 my-5">
-                  {/* <div className="text-start"> */}
-                  <Label htmlFor="firstname" className="my-auto col-span-2 pr-2 text-start leading-4">Have You Ever Had a Stroke?</Label>
-                  {/* </div>                 */}
+                  <Label htmlFor="stroke" error={errors.stroke} className="col-span-2 pr-2 leading-4">Have You Ever Had a Stroke?</Label>
 
                   <div className="col-span-4">
                     <p className="mt-1 text-start text-sm/6 text-gray-600 dark:text-neutral-300">Have you ever experienced a stroke or been diagnosed with one by a doctor?</p>
@@ -224,7 +375,7 @@ const PredictorForm = () => {
                 
                 {/* title and desicription */}
                 <div className="grid grid-cols-6 my-5">
-                  <Label htmlFor="firstname" className="my-auto col-span-2 pr-2 text-start leading-4">Do You Have Difficulty Walking?</Label>              
+                  <Label htmlFor="diffwalking" error={errors.diffwalking} className="col-span-2 pr-2 leading-4">Do You Have Difficulty Walking?</Label>              
 
                   <div className="col-span-4">
                     <p className="mt-1 text-start text-sm/6 text-gray-600 dark:text-neutral-300">Do you have serious difficulty walking or climbing stairs that affects your daily activities?</p>
@@ -259,7 +410,7 @@ const PredictorForm = () => {
                 
                 {/* title and desicription */}
                 <div className="grid grid-cols-6 my-5">
-                  <Label htmlFor="firstname" className="my-auto col-span-2 pr-2 text-start leading-4">Sex Assigned at Birth</Label>               
+                  <Label htmlFor="sex" error={errors.sex} className="col-span-2 pr-2 leading-4">Sex Assigned at Birth</Label>               
 
                   <div className="col-span-4">
                     <p className="mt-1 text-start text-sm/6 text-gray-600 dark:text-neutral-300">Please select your gender.</p>
@@ -294,7 +445,7 @@ const PredictorForm = () => {
                 
                 {/* title and desicription */}
                 <div className="grid grid-cols-6 my-5">
-                  <Label htmlFor="firstname" className="my-auto col-span-2 pr-2 text-start leading-4">Do You Have Diabetes?</Label>              
+                  <Label htmlFor="diabetes" error={errors.diabetes} className="col-span-2 pr-2 leading-4">Do You Have Diabetes?</Label>              
 
                   <div className="col-span-4">
                     <p className="mt-1 text-start text-sm/6 text-gray-600 dark:text-neutral-300">Have you been diagnosed with diabetes or prediabetes by a healthcare professional?</p>
@@ -329,7 +480,7 @@ const PredictorForm = () => {
                 
                 {/* title and desicription */}
                 <div className="grid grid-cols-6 my-5">
-                  <Label htmlFor="firstname" className="my-auto col-span-2 pr-2 text-start leading-4">Do You Exercise Regularly?</Label>               
+                  <Label htmlFor="exercise" error={errors.exercise} className="col-span-2 pr-2 leading-4">Do You Exercise Regularly?</Label>               
 
                   <div className="col-span-4">
                     <p className="mt-1 text-start text-sm/6 text-gray-600 dark:text-neutral-300">Do you regularly participate in moderate or vigorous physical exercise?</p>
@@ -364,7 +515,7 @@ const PredictorForm = () => {
                 
                 {/* title and desicription */}
                 <div className="grid grid-cols-6 my-5">
-                  <Label htmlFor="firstname" className="my-auto col-span-2 pr-2 text-start leading-4">Do You Have Asthma?</Label>
+                  <Label htmlFor="asthma" error={errors.asthma} className="col-span-2 pr-2 leading-4">Do You Have Asthma?</Label>
 
                   <div className="col-span-4">
                     <p className="mt-1 text-start text-sm/6 text-gray-600 dark:text-neutral-300">Have you ever been diagnosed with asthma?</p>
@@ -399,7 +550,7 @@ const PredictorForm = () => {
                 
                 {/* title and desicription */}
                 <div className="grid grid-cols-6 my-5">
-                  <Label htmlFor="firstname" className="my-auto col-span-2 pr-2 text-start leading-4">Do You Have Kidney Disease?</Label>
+                  <Label htmlFor="kidneydisease" error={errors.kidneydisease} className="col-span-2 pr-2 leading-4">Do You Have Kidney Disease?</Label>
               
 
                   <div className="col-span-4">
@@ -435,7 +586,7 @@ const PredictorForm = () => {
                 
                 {/* title and desicription */}
                 <div className="grid grid-cols-6 my-5">
-                  <Label htmlFor="firstname" className="my-auto col-span-2 pr-2 text-start leading-4">Have You Ever Had Skin Cancer?</Label>
+                  <Label htmlFor="skincancer" error={errors.skincancer} className="col-span-2 pr-2 leading-4">Have You Ever Had Skin Cancer?</Label>
                                   
 
                   <div className="col-span-4">
@@ -471,7 +622,7 @@ const PredictorForm = () => {
                 
                 {/* title and desicription */}
                 <div className="grid grid-cols-6 my-5">
-                  <Label htmlFor="firstname" className="my-auto col-span-2 pr-2 text-start leading-4">Select Your Race</Label>
+                  <Label htmlFor="race" error={errors.race} className="col-span-2 pr-2 leading-4">Select Your Race</Label>
                                 
 
                   <div className="col-span-4">
@@ -543,7 +694,7 @@ const PredictorForm = () => {
                 
                 {/* title and desicription */}
                 <div className="grid grid-cols-6 my-5">
-                  <Label htmlFor="firstname" className="my-auto col-span-2 pr-2 text-start leading-4">How Would You Rate Your General Health?</Label>
+                  <Label htmlFor="genhealth" error={errors.genhealth} className="col-span-2 pr-2 leading-4">How Would You Rate Your General Health?</Label>
            
 
                   <div className="col-span-4">
@@ -608,7 +759,7 @@ const PredictorForm = () => {
                 
                 {/* title and desicription */}
                 <div className="grid grid-cols-6 my-5">
-                  <Label htmlFor="firstname" className="my-auto col-span-2 pr-2 text-start leading-4">Select your age group</Label>
+                  <Label htmlFor="agecategory" error={errors.agecategory} className="col-span-2 pr-2 leading-4">Select your age group</Label>
                                   
 
                   <div className="col-span-4">
