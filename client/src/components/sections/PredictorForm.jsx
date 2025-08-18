@@ -3,29 +3,14 @@
 import { Label } from "../ui/form-components/Labels";
 import { Input } from "../ui/form-components/Input";
 import { cn } from "../../lib/utils";
-import Divider from "../ui/form-components/Divider"
 import RadioButton from "../ui/form-components/RadioButton";
 import { useState } from 'react';
 import Error from "../ui/form-components/Error";
 import { scroller } from "react-scroll";
+import { submit } from "../../service/PredictorFormService";
 
 const PredictorForm = () => {
   
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form submitted");
-    console.log(inputs);
-    validateForm();
-  };
-
-  const scrollToTop = () => {
-    scroller.scrollTo("heading", {
-      duration: 800,     
-      smooth: "easeInOut", 
-      offset: -50,       
-    });
-  };
-
   const [inputs, setInputs] = useState({
     firstname : "",
     lastname : "",
@@ -48,19 +33,36 @@ const PredictorForm = () => {
     genhealth : "",
     agecategory : ""
   });
-
+  
   const [errors, setErrors] = useState({});
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("Form submitted");
+    console.log(inputs);
+    if(validateForm()){
+      const res = await submit(inputs);
+      console.log("Success : " + res);
+    }
+  };
+
+  const scrollToTop = () => {
+    scroller.scrollTo("heading", {
+      duration: 800,     
+      smooth: "easeInOut", 
+      offset: -50,       
+    });
+  };
 
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-
     setInputs(values => ({...values, [name]: value}));
-
     const error = validateField(name, value);
     setErrors(values => ({...values, [name]:error}));
   }
 
+  // This validates fields at input
   const validateField = (name, value) => {
     
     let error = "";
@@ -119,6 +121,7 @@ const PredictorForm = () => {
     return error;
   }
 
+  // This validates fields at submit
   const validateForm = () => {
     // check for empty fields
     emptyFieldValidation();
@@ -127,8 +130,10 @@ const PredictorForm = () => {
       console.log("Errors found");
       console.log(errors);
       scrollToTop();
+      return false;
     }else{
       console.log("no errors found");
+      return true;
     }
   }
 
