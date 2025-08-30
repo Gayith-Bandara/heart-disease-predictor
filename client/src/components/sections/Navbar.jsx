@@ -9,7 +9,7 @@ const Navbar = () => {
       <div className="flex items-center gap-2">
         <h1 className="font-bold md:text-xl text-gray-700 dark:text-gray-300"><span className="text-red-400">H</span>Care</h1>
       </div>
-      <div className="px-4">
+      <div className="px-4 invisible md:visible ">
         <ul className="flex gap-10 text-gray-700 dark:text-gray-300">
             <Link className="hover:cursor-pointer hover:text-red-400" to="hero" smooth={true} duration={500}>
                 Home

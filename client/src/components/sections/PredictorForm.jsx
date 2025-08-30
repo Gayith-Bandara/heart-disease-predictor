@@ -965,5 +965,4 @@ const LabelRadioButtonContainer = ({
   );
 }
 
-
 export default PredictorForm;

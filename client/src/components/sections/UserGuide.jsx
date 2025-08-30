@@ -11,10 +11,17 @@ const content = [
     description:
       "Accurately enter your details, make sure you fill each field as accurately as you can and make sure you fill all entries.",
     content: (
-      <div className="flex h-full w-full items-center justify-center">
-        <img src="src/assets/form-light-mode.png" className="dark:hidden" alt="Logo Light" />
-        <img src="src/assets/form-dark-mode.png" className="hidden dark:block" alt="Logo Dark" />
-      </div>
+      // <div className="flex h-full w-full items-center justify-center object-cover">
+      //   <img src="src/assets/form-light-mode.png" className="dark:hidden" alt="Logo Light" />
+      //   <img src="src/assets/form-dark-mode.png" className="hidden dark:block" alt="Logo Dark" />
+      // </div>
+
+      <div className="
+        flex h-screen w-full items-center justify-center 
+        bg-contain bg-center lg:bg-cover bg-center
+        dark:bg-[url('src/assets/form-dark-mode.png')] 
+        bg-[url('src/assets/form-light-mode.png')]">
+        </div>
     ),
   },
   {
@@ -22,9 +29,15 @@ const content = [
     description:
       "Once all the entries are filled as accurately as possible, press on the check button and wait for the magic to happen",
     content: (
-      <div className="flex h-full w-full items-center justify-center">
-        <img src="src/assets/button-light-mode.png" className="dark:hidden" alt="Logo Light" />
-        <img src="src/assets/button-dark-mode.png" className="hidden dark:block" alt="Logo Dark" />
+      // <div className="flex h-full w-full items-center justify-center">
+      //   <img src="src/assets/button-light-mode.png" className="dark:hidden" alt="Logo Light" />
+      //   <img src="src/assets/button-dark-mode.png" className="hidden dark:block" alt="Logo Dark" />
+      // </div>
+
+      <div className="flex h-screen w-full items-center justify-center 
+        bg-contain bg-center lg:bg-cover bg-center 
+        dark:bg-[url('src/assets/button-dark-mode.png')] 
+        bg-[url('src/assets/button-light-mode.png')]">
       </div>
     ),
   },
@@ -40,6 +53,7 @@ const content = [
     ),
   },
 ];
+
 const UserGuide = () => {
   return (
     <div className="w-full py-4" name="userGuide">
@@ -75,17 +89,6 @@ export const StickyScroll = ({
     setActiveCard(closestBreakpointIndex);
   });
 
-  // const backgroundColors = [
-  //   "#f5f5f5", // slate-900
-  //   "#d4d4d4", // black
-  //   "#bdbdbd", // neutral-900
-  // ];
-
-  // const backgroundColors = [
-  //   "#0f172a", // slate-900
-  //   "#000000", // black
-  //   "#171717", // neutral-900
-  // ];
 
   const linearGradients = [
     "linear-gradient(to bottom right, white, red)", 
