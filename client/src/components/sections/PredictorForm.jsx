@@ -168,9 +168,7 @@ const PredictorForm = () => {
         Fill out your details as accurately as possible
       </p>
       <form className="my-8" onSubmit={handleSubmit}>
-
         <div>
-
             {/* contact information */}            
             <div className="mb-4 py-10 border-y-1 border-gray-300 dark:border-gray-600" >
               <div className="text-start mb-10">
@@ -178,33 +176,33 @@ const PredictorForm = () => {
                 <p className="mt-1 text-md/6 text-gray-600 dark:text-neutral-300">Just your name and email so we can stay connected and keep things organized. We promise to keep your info safe and private!</p>
               </div>
       
-              <div className="relative grid grid-cols-6 my-5">
+              <div className="relative grid grid-cols-6 gap-y-4 my-5">
                 
-                <Label htmlFor="firstname" error={errors.firstname} >First name </Label>
+                <Label htmlFor="firstname" className="col-span-6 sm:col-span-2" error={errors.firstname} >First name </Label>
                 
-                <div className="col-span-2 col-start-3">
+                <div className="col-span-6 sm:col-span-2 sm:col-start-3">
                   <Input id="firstname" placeholder="Tyler" type="text" name="firstname"  value={inputs.firstname || ""} onChange={handleChange}/>
                 </div>      
 
                 {errors.firstname && <Error message={errors.firstname}/>} 
               </div>
 
-              <div className="grid grid-cols-6 my-5">
+              <div className="grid grid-cols-6 gap-y-4 my-5">
 
-                <Label htmlFor="lastname" error={errors.lastname}>Last name (Optional)</Label>
+                <Label htmlFor="lastname" className="col-span-6 sm:col-span-2" error={errors.lastname}>Last name (Optional)</Label>
 
-                <div className="col-span-2 col-start-3">
+                <div className="col-span-6 sm:col-span-2 sm:col-start-3">
                   <Input id="lastname" placeholder="Durden" type="text" name="lastname" value={inputs.lastname || ""} onChange={handleChange}/>
                 </div>   
 
                 {errors.lastname && <Error message={errors.lastname}/>}
               </div>
 
-              <div className="grid grid-cols-6 my-5">
+              <div className="grid grid-cols-6 gap-y-4 my-5">
 
-                <Label htmlFor="email" error={errors.email}>Email Address</Label>
+                <Label htmlFor="email" className="col-span-6 sm:col-span-2" error={errors.email}>Email Address</Label>
 
-                <div className="col-span-2 col-start-3">
+                <div className="col-span-6 sm:col-span-2 sm:col-start-3">
                   <Input id="email" placeholder="fillformaccurately@hcare.com" type="email" name="email" value={inputs.email || ""} onChange={handleChange}/>
                 </div>
 
@@ -223,11 +221,11 @@ const PredictorForm = () => {
               </div>
 
               {/* BMI */}
-              <div className="grid grid-cols-6 my-5">
+              <div className="grid grid-cols-6 gap-y-4 my-5">
 
-                <Label htmlFor="bmi" error={errors.bmi}>Body Mass Index (BMI)</Label>
+                <Label htmlFor="bmi" className="col-span-6 sm:col-span-2" error={errors.bmi}>Body Mass Index (BMI)</Label>
 
-                <div className="col-span-2 col-start-3">
+                <div className="col-span-6 sm:col-span-2 sm:col-start-3">
                   <Input id="bmi" placeholder="your BMI" type="text" name="bmi" value={inputs.bmi || ""} onChange={handleChange}/>
                 </div> 
 
@@ -235,11 +233,11 @@ const PredictorForm = () => {
               </div>
 
               {/* Physical Health */}
-              <div className="grid grid-cols-6 my-5">
+              <div className="grid grid-cols-6 gap-y-4 my-5">
 
-                <Label htmlFor="phealth" error={errors.phealth} className="col-span-2 pr-2 leading-4">Days you felt physically unwell (last 30)</Label>
+                <Label htmlFor="phealth" error={errors.phealth} className="col-span-6 sm:col-span-2 pr-2 leading-4">Days you felt physically unwell (last 30)</Label>
                 
-                <div className="col-span-2">
+                <div className="col-span-6 sm:col-span-2 sm:col-start-3">
                   <Input id="phealth" placeholder="number between 0-30" type="text" name="phealth" value={inputs.phealth || ""} onChange={handleChange}/>
                 </div> 
 
@@ -247,11 +245,11 @@ const PredictorForm = () => {
               </div>
 
               {/* Mental Health */}
-              <div className="grid grid-cols-6 my-5">
+              <div className="grid grid-cols-6 gap-y-4 my-5">
 
-                <Label htmlFor="mhealth" error={errors.mhealth} className="col-span-2 pr-2 leading-4">Days you felt mentally unwell (last 30)</Label>
+                <Label htmlFor="mhealth" error={errors.mhealth} className="col-span-6 sm:col-span-2 pr-2 leading-4">Days you felt mentally unwell (last 30)</Label>
                 
-                <div className="col-span-2">
+                <div className="col-span-6 sm:col-span-2 sm:col-start-3">
                   <Input id="mhealth" placeholder="number between 0-30" type="text" name="mhealth" value={inputs.mhealth || ""} onChange={handleChange}/>
                 </div>     
 
@@ -259,11 +257,11 @@ const PredictorForm = () => {
               </div>
 
               {/* Sleep */}
-              <div className="grid grid-cols-6 my-5">
+              <div className="grid grid-cols-6 gap-y-4 my-5">
 
-                <Label htmlFor="sleep" error={errors.sleep} className="col-span-2 pr-2 leading-4">How many hours do you sleep on average?</Label>
+                <Label htmlFor="sleep" error={errors.sleep} className="col-span-6 sm:col-span-2 pr-2 leading-4">How many hours do you sleep on average?</Label>
 
-                <div className="col-span-2 col-start-3">
+                <div className="col-span-6 sm:col-span-2 sm:col-start-3">
                   <Input id="sleep" placeholder="hours" type="text" name="sleep" value={inputs.sleep || ""} onChange={handleChange}/>
                 </div>               
 
@@ -275,16 +273,16 @@ const PredictorForm = () => {
                 
                 {/* title and desicription */}
                 <div className="grid grid-cols-6 my-5">
-                  <Label htmlFor="smoking" error={errors.smoking} className="col-span-2 pr-2 leading-4">Do You Smoke?</Label>              
+                  <Label htmlFor="smoking" error={errors.smoking} className="col-span-6 sm:col-span-2 pr-2 leading-4">Do You Smoke?</Label>              
 
-                  <div className="col-span-4">
+                  <div className="col-span-6 sm:col-span-4">
                     <p className="mt-1 text-start text-sm/6 text-gray-600 dark:text-neutral-300">Do you currently smoke cigarettes or use tobacco products?</p>
                   </div>
                 </div>
                 
                 {/* radio button options */}
                 <div className="grid grid-cols-6">
-                  <div className="col-span-4 col-start-3 space-y-3 px-2">
+                  <div className="grid grid-cols-4 col-span-6 sm:col-start-3 space-y-3 sm:px-2">
 
                     <div>
                       <LabelRadioButtonContainer>
@@ -310,16 +308,16 @@ const PredictorForm = () => {
                 
                 {/* title and desicription */}
                 <div className="grid grid-cols-6 my-5">
-                  <Label htmlFor="drinking" error={errors.drinking} className="col-span-2 pr-2 leading-4">Do You Drink Alcohol?</Label>               
+                  <Label htmlFor="drinking" error={errors.drinking} className="col-span-6 sm:col-span-2 pr-2 leading-4">Do You Drink Alcohol?</Label>               
 
-                  <div className="col-span-4">
+                  <div className="col-span-6 sm:col-span-4">
                     <p className="mt-1 text-start text-sm/6 text-gray-600 dark:text-neutral-300">Do you regularly consume alcoholic drinks?</p>
                   </div>
                 </div>
                 
                 {/* radio button options */}
                 <div className="grid grid-cols-6">
-                  <div className="col-span-4 col-start-3 space-y-3 px-2">
+                  <div className="grid grid-cols-4 col-span-6 sm:col-start-3 space-y-3 sm:px-2">
 
                     <div>
                       <LabelRadioButtonContainer>
@@ -345,16 +343,16 @@ const PredictorForm = () => {
                 
                 {/* title and desicription */}
                 <div className="grid grid-cols-6 my-5">
-                  <Label htmlFor="stroke" error={errors.stroke} className="col-span-2 pr-2 leading-4">Have You Ever Had a Stroke?</Label>
+                  <Label htmlFor="stroke" error={errors.stroke} className="col-span-6 sm:col-span-2 pr-2 leading-4">Have You Ever Had a Stroke?</Label>
 
-                  <div className="col-span-4">
+                  <div className="col-span-6 sm:col-span-4">
                     <p className="mt-1 text-start text-sm/6 text-gray-600 dark:text-neutral-300">Have you ever experienced a stroke or been diagnosed with one by a doctor?</p>
                   </div>
                 </div>
                 
                 {/* radio button options */}
                 <div className="grid grid-cols-6">
-                  <div className="col-span-4 col-start-3 space-y-3 px-2">
+                  <div className="grid grid-cols-4 col-span-6 sm:col-start-3 space-y-3 sm:px-2">
 
                     <div>
                       <LabelRadioButtonContainer>
@@ -380,16 +378,16 @@ const PredictorForm = () => {
                 
                 {/* title and desicription */}
                 <div className="grid grid-cols-6 my-5">
-                  <Label htmlFor="diffwalking" error={errors.diffwalking} className="col-span-2 pr-2 leading-4">Do You Have Difficulty Walking?</Label>              
+                  <Label htmlFor="diffwalking" error={errors.diffwalking} className="col-span-6 sm:col-span-2 pr-2 leading-4">Do You Have Difficulty Walking?</Label>              
 
-                  <div className="col-span-4">
+                  <div className="col-span-6 sm:col-span-4">
                     <p className="mt-1 text-start text-sm/6 text-gray-600 dark:text-neutral-300">Do you have serious difficulty walking or climbing stairs that affects your daily activities?</p>
                   </div>
                 </div>
                 
                 {/* radio button options */}
                 <div className="grid grid-cols-6">
-                  <div className="col-span-4 col-start-3 space-y-3 px-2">
+                  <div className="grid grid-cols-4 col-span-6 sm:col-start-3 space-y-3 sm:px-2">
 
                     <div>
                       <LabelRadioButtonContainer>
@@ -415,16 +413,16 @@ const PredictorForm = () => {
                 
                 {/* title and desicription */}
                 <div className="grid grid-cols-6 my-5">
-                  <Label htmlFor="sex" error={errors.sex} className="col-span-2 pr-2 leading-4">Sex Assigned at Birth</Label>               
+                  <Label htmlFor="sex" error={errors.sex} className="col-span-6 sm:col-span-2 pr-2 leading-4">Sex Assigned at Birth</Label>               
 
-                  <div className="col-span-4">
+                  <div className="col-span-6 sm:col-span-4">
                     <p className="mt-1 text-start text-sm/6 text-gray-600 dark:text-neutral-300">Please select your gender.</p>
                   </div>
                 </div>
                 
                 {/* radio button options */}
                 <div className="grid grid-cols-6">
-                  <div className="col-span-4 col-start-3 space-y-3 px-2">
+                  <div className="grid grid-cols-4 col-span-6 sm:col-start-3 space-y-3 sm:px-2">
 
                     <div>
                       <LabelRadioButtonContainer>
@@ -450,16 +448,16 @@ const PredictorForm = () => {
                 
                 {/* title and desicription */}
                 <div className="grid grid-cols-6 my-5">
-                  <Label htmlFor="diabetes" error={errors.diabetes} className="col-span-2 pr-2 leading-4">Do You Have Diabetes?</Label>              
+                  <Label htmlFor="diabetes" error={errors.diabetes} className="col-span-6 sm:col-span-2 pr-2 leading-4">Do You Have Diabetes?</Label>              
 
-                  <div className="col-span-4">
+                  <div className="col-span-6 sm:col-span-4">
                     <p className="mt-1 text-start text-sm/6 text-gray-600 dark:text-neutral-300">Have you been diagnosed with diabetes or prediabetes by a healthcare professional?</p>
                   </div>
                 </div>
                 
                 {/* radio button options */}
                 <div className="grid grid-cols-6">
-                  <div className="col-span-4 col-start-3 space-y-3 px-2">
+                  <div className="grid grid-cols-4 col-span-6 sm:col-start-3 space-y-3 sm:px-2">
 
                     <div>
                       <LabelRadioButtonContainer>
@@ -485,16 +483,16 @@ const PredictorForm = () => {
                 
                 {/* title and desicription */}
                 <div className="grid grid-cols-6 my-5">
-                  <Label htmlFor="exercise" error={errors.exercise} className="col-span-2 pr-2 leading-4">Do You Exercise Regularly?</Label>               
+                  <Label htmlFor="exercise" error={errors.exercise} className="col-span-6 sm:col-span-2 pr-2 leading-4">Do You Exercise Regularly?</Label>               
 
-                  <div className="col-span-4">
+                  <div className="col-span-6 sm:col-span-4">
                     <p className="mt-1 text-start text-sm/6 text-gray-600 dark:text-neutral-300">Do you regularly participate in moderate or vigorous physical exercise?</p>
                   </div>
                 </div>
                 
                 {/* radio button options */}
                 <div className="grid grid-cols-6">
-                  <div className="col-span-4 col-start-3 space-y-3 px-2">
+                  <div className="grid grid-cols-4 col-span-6 sm:col-start-3 space-y-3 sm:px-2">
 
                     <div>
                       <LabelRadioButtonContainer>
@@ -520,16 +518,16 @@ const PredictorForm = () => {
                 
                 {/* title and desicription */}
                 <div className="grid grid-cols-6 my-5">
-                  <Label htmlFor="asthma" error={errors.asthma} className="col-span-2 pr-2 leading-4">Do You Have Asthma?</Label>
+                  <Label htmlFor="asthma" error={errors.asthma} className="col-span-6 sm:col-span-2 pr-2 leading-4">Do You Have Asthma?</Label>
 
-                  <div className="col-span-4">
+                  <div className="col-span-6 sm:col-span-4">
                     <p className="mt-1 text-start text-sm/6 text-gray-600 dark:text-neutral-300">Have you ever been diagnosed with asthma?</p>
                   </div>
                 </div>
                 
                 {/* radio button options */}
                 <div className="grid grid-cols-6">
-                  <div className="col-span-4 col-start-3 space-y-3 px-2">
+                  <div className="grid grid-cols-4 col-span-6 sm:col-start-3 space-y-3 sm:px-2">
 
                     <div>
                       <LabelRadioButtonContainer>
@@ -555,17 +553,17 @@ const PredictorForm = () => {
                 
                 {/* title and desicription */}
                 <div className="grid grid-cols-6 my-5">
-                  <Label htmlFor="kidneydisease" error={errors.kidneydisease} className="col-span-2 pr-2 leading-4">Do You Have Kidney Disease?</Label>
+                  <Label htmlFor="kidneydisease" error={errors.kidneydisease} className="col-span-6 sm:col-span-2 pr-2 leading-4">Do You Have Kidney Disease?</Label>
               
 
-                  <div className="col-span-4">
+                  <div className="col-span-6 sm:col-span-4">
                     <p className="mt-1 text-start text-sm/6 text-gray-600 dark:text-neutral-300">Have you been told by a doctor that you have kidney disease?</p>
                   </div>
                 </div>
                 
                 {/* radio button options */}
                 <div className="grid grid-cols-6">
-                  <div className="col-span-4 col-start-3 space-y-3 px-2">
+                  <div className="grid grid-cols-4 col-span-6 sm:col-start-3 space-y-3 sm:px-2">
 
                     <div>
                       <LabelRadioButtonContainer>
@@ -591,17 +589,17 @@ const PredictorForm = () => {
                 
                 {/* title and desicription */}
                 <div className="grid grid-cols-6 my-5">
-                  <Label htmlFor="skincancer" error={errors.skincancer} className="col-span-2 pr-2 leading-4">Have You Ever Had Skin Cancer?</Label>
+                  <Label htmlFor="skincancer" error={errors.skincancer} className="col-span-6 sm:col-span-2 pr-2 leading-4">Have You Ever Had Skin Cancer?</Label>
                                   
 
-                  <div className="col-span-4">
+                  <div className="col-span-6 sm:col-span-4">
                     <p className="mt-1 text-start text-sm/6 text-gray-600 dark:text-neutral-300">Have you ever been diagnosed with skin cancer?</p>
                   </div>
                 </div>
                 
                 {/* radio button options */}
                 <div className="grid grid-cols-6">
-                  <div className="col-span-4 col-start-3 space-y-3 px-2">
+                  <div className="grid grid-cols-4 col-span-6 sm:col-start-3 space-y-3 sm:px-2">
 
                     <div>
                       <LabelRadioButtonContainer>
@@ -627,17 +625,17 @@ const PredictorForm = () => {
                 
                 {/* title and desicription */}
                 <div className="grid grid-cols-6 my-5">
-                  <Label htmlFor="race" error={errors.race} className="col-span-2 pr-2 leading-4">Select Your Race</Label>
+                  <Label htmlFor="race" error={errors.race} className="col-span-6 sm:col-span-2 pr-2 leading-4">Select Your Race</Label>
                                 
 
-                  <div className="col-span-4">
+                  <div className="col-span-6 sm:col-span-4">
                     <p className="mt-1 text-start text-sm/6 text-gray-600 dark:text-neutral-300">Select the race or ethnicity that you identify with.</p>
                   </div>
                 </div>
                 
                 {/* radio button options */}
-                <div className="grid grid-cols-6">
-                  <div className="col-span-1 col-start-3 space-y-3 px-2">
+                <div className="sm:grid sm:grid-cols-6">
+                  <div className="flex flex-wrap space-x-5 space-y-4 sm:flex-none sm:col-start-3 sm:col-span-4">
 
                     <div>
                       <LabelRadioButtonContainer>
@@ -653,10 +651,6 @@ const PredictorForm = () => {
                       </LabelRadioButtonContainer>
                     </div>
 
-                  </div>
-
-                  <div className="col-span-1 col-start-4 space-y-3 px-2">
-
                     <div>
                       <LabelRadioButtonContainer>
                         <RadioButton id="asian" name="race" value="asian" checked={inputs.race === "asian"} onChange={handleChange}/>
@@ -670,10 +664,6 @@ const PredictorForm = () => {
                         <Label htmlFor="hispanic"> Hispanic </Label>
                       </LabelRadioButtonContainer>
                     </div>
-
-                  </div>
-
-                  <div className="col-span-2 col-start-5 space-y-3 px-2">
 
                     <div>
                       <LabelRadioButtonContainer>
@@ -691,6 +681,7 @@ const PredictorForm = () => {
 
                   </div>
                 </div>
+                
                                 
               </div>
 
@@ -699,63 +690,104 @@ const PredictorForm = () => {
                 
                 {/* title and desicription */}
                 <div className="grid grid-cols-6 my-5">
-                  <Label htmlFor="genhealth" error={errors.genhealth} className="col-span-2 pr-2 leading-4">How Would You Rate Your General Health?</Label>
+                  <Label htmlFor="genhealth" error={errors.genhealth} className="col-span-6 sm:col-span-2 pr-2 leading-4">How Would You Rate Your General Health?</Label>
            
 
-                  <div className="col-span-4">
+                  <div className="col-span-6 sm:col-span-4">
                     <p className="mt-1 text-start text-sm/6 text-gray-600 dark:text-neutral-300">How would you rate your overall health, from excellent to poor?</p>
                   </div>
                 </div>
                 
                 {/* radio button options */}
-                <div className="grid grid-cols-6">
-                  <div className="col-span-1 col-start-3 space-y-3 px-2">
+                <div className="sm:grid sm:grid-cols-6">
+                  {/* grid sm:grid-cols-6 */}
+                  <div className="flex flex-wrap space-x-5 space-y-4 sm:flex-none sm:col-start-3 sm:col-span-4">
 
-                    <div>
-                      <LabelRadioButtonContainer>
-                        <RadioButton id="excellent" name="genhealth" value="excellent" checked={inputs.genhealth === "excellent"} onChange={handleChange}/>
-                        <Label htmlFor="excellent"> Excellent </Label>
-                      </LabelRadioButtonContainer>
-                    </div>
+                    {/* <div className="col-span-1 sm:col-start-3 space-y-3 px-2">
 
-                    <div>
-                      <LabelRadioButtonContainer>
-                        <RadioButton id="fair" name="genhealth" value="fair" checked={inputs.genhealth === "fair"} onChange={handleChange}/>
-                        <Label htmlFor="fair"> Fair </Label>
-                      </LabelRadioButtonContainer>
-                    </div>
+                      <div>
+                        <LabelRadioButtonContainer>
+                          <RadioButton id="excellent" name="genhealth" value="excellent" checked={inputs.genhealth === "excellent"} onChange={handleChange}/>
+                          <Label htmlFor="excellent"> Excellent </Label>
+                        </LabelRadioButtonContainer>
+                      </div>
 
-                  </div>
+                      <div>
+                        <LabelRadioButtonContainer>
+                          <RadioButton id="fair" name="genhealth" value="fair" checked={inputs.genhealth === "fair"} onChange={handleChange}/>
+                          <Label htmlFor="fair"> Fair </Label>
+                        </LabelRadioButtonContainer>
+                      </div>
 
-                  <div className="col-span-1 col-start-4 space-y-3 px-2">
+                    </div> */}
 
-                    <div>
-                      <LabelRadioButtonContainer>
-                        <RadioButton id="very-good" name="genhealth" value="very-good" checked={inputs.genhealth === "very-good"} onChange={handleChange}/>
-                        <Label htmlFor="very-good"> Very good </Label>
-                      </LabelRadioButtonContainer>
-                    </div>
+                    {/* <div className="col-span-1 sm:col-start-4 space-y-3 px-2">
 
-                    <div>
-                      <LabelRadioButtonContainer>
-                        <RadioButton id="poor" name="genhealth" value="poor" checked={inputs.genhealth === "poor"} onChange={handleChange}/>
-                        <Label htmlFor="poor"> Poor </Label>
-                      </LabelRadioButtonContainer>
-                    </div>
+                      <div>
+                        <LabelRadioButtonContainer>
+                          <RadioButton id="very-good" name="genhealth" value="very-good" checked={inputs.genhealth === "very-good"} onChange={handleChange}/>
+                          <Label htmlFor="very-good"> Very good </Label>
+                        </LabelRadioButtonContainer>
+                      </div>
 
-                  </div>
+                      <div>
+                        <LabelRadioButtonContainer>
+                          <RadioButton id="poor" name="genhealth" value="poor" checked={inputs.genhealth === "poor"} onChange={handleChange}/>
+                          <Label htmlFor="poor"> Poor </Label>
+                        </LabelRadioButtonContainer>
+                      </div>
 
-                  <div className="col-span-2 col-start-5 space-y-3 px-2">
+                    </div> */}
 
-                    <div>
-                      <LabelRadioButtonContainer>
-                        <RadioButton id="good" name="genhealth" value="good" checked={inputs.genhealth === "good"} onChange={handleChange}/>
-                        <Label htmlFor="good"> Good </Label>
-                      </LabelRadioButtonContainer>
-                    </div>
+                    {/* <div className="col-span-2 sm:col-start-5 space-y-3 px-2">
+
+                      <div>
+                        <LabelRadioButtonContainer>
+                          <RadioButton id="good" name="genhealth" value="good" checked={inputs.genhealth === "good"} onChange={handleChange}/>
+                          <Label htmlFor="good"> Good </Label>
+                        </LabelRadioButtonContainer>
+                      </div>
+
+                    </div> */}
+                    
+                      <div>
+                        <LabelRadioButtonContainer>
+                          <RadioButton id="excellent" name="genhealth" value="excellent" checked={inputs.genhealth === "excellent"} onChange={handleChange}/>
+                          <Label htmlFor="excellent"> Excellent </Label>
+                        </LabelRadioButtonContainer>
+                      </div>
+
+                      <div>
+                        <LabelRadioButtonContainer>
+                          <RadioButton id="very-good" name="genhealth" value="very-good" checked={inputs.genhealth === "very-good"} onChange={handleChange}/>
+                          <Label htmlFor="very-good"> Very good </Label>
+                        </LabelRadioButtonContainer>
+                      </div>
+
+                      <div>
+                        <LabelRadioButtonContainer>
+                          <RadioButton id="good" name="genhealth" value="good" checked={inputs.genhealth === "good"} onChange={handleChange}/>
+                          <Label htmlFor="good"> Good </Label>
+                        </LabelRadioButtonContainer>
+                      </div>
+
+                      <div>
+                        <LabelRadioButtonContainer>
+                          <RadioButton id="fair" name="genhealth" value="fair" checked={inputs.genhealth === "fair"} onChange={handleChange}/>
+                          <Label htmlFor="fair"> Fair </Label>
+                        </LabelRadioButtonContainer>
+                      </div>
+
+                      <div>
+                        <LabelRadioButtonContainer>
+                          <RadioButton id="poor" name="genhealth" value="poor" checked={inputs.genhealth === "poor"} onChange={handleChange}/>
+                          <Label htmlFor="poor"> Poor </Label>
+                        </LabelRadioButtonContainer>
+                      </div>
 
                   </div>
                 </div>
+                
                                 
               </div>
 
@@ -764,23 +796,43 @@ const PredictorForm = () => {
                 
                 {/* title and desicription */}
                 <div className="grid grid-cols-6 my-5">
-                  <Label htmlFor="agecategory" error={errors.agecategory} className="col-span-2 pr-2 leading-4">Select your age group</Label>
+                  <Label htmlFor="agecategory" error={errors.agecategory} className="col-span-6 sm:col-span-2 pr-2 leading-4">Select your age group</Label>
                                   
 
-                  <div className="col-span-4">
+                  <div className="col-span-6 sm:col-span-4">
                     <p className="mt-1 text-start text-sm/6 text-gray-600 dark:text-neutral-300">Choose the age group that best describes your current age.</p>
                   </div>
                 </div>
                 
-                {/* radio button options */}
-                <div className="grid grid-cols-6">
-
-                  <div className="col-span-1 col-start-3 space-y-3 px-2">
+                <div className="sm:grid sm:grid-cols-6">
+                  {/* radio button options */}
+                  <div className="flex flex-wrap space-x-5 space-y-4 sm:flex-none sm:col-start-3 sm:col-span-4">
 
                     <div >
                       <LabelRadioButtonContainer>
                         <RadioButton id="18-24" name="agecategory" value="18-24" checked={inputs.agecategory === "18-24"} onChange={handleChange}/>
                         <Label htmlFor="18-24"> 18-24 </Label>
+                      </LabelRadioButtonContainer>
+                    </div>
+
+                    <div >
+                      <LabelRadioButtonContainer>
+                        <RadioButton id="25-29" name="agecategory" value="25-29" checked={inputs.agecategory === "25-29"} onChange={handleChange}/>
+                        <Label htmlFor="25-29"> 25-29 </Label>
+                      </LabelRadioButtonContainer>
+                    </div>
+
+                    <div >
+                      <LabelRadioButtonContainer>
+                        <RadioButton id="30-34" name="agecategory" value="30-34" checked={inputs.agecategory === "30-34"} onChange={handleChange}/>
+                        <Label htmlFor="30-34"> 30-34 </Label>
+                      </LabelRadioButtonContainer>
+                    </div>
+
+                    <div >
+                      <LabelRadioButtonContainer>
+                        <RadioButton id="35-39" name="agecategory" value="35-39" checked={inputs.agecategory === "35-39"} onChange={handleChange}/>
+                        <Label htmlFor="35-39"> 35-39 </Label>
                       </LabelRadioButtonContainer>
                     </div>
 
@@ -793,8 +845,51 @@ const PredictorForm = () => {
 
                     <div >
                       <LabelRadioButtonContainer>
+                        <RadioButton id="45-49" name="agecategory" value="45-49" checked={inputs.agecategory === "45-49"} onChange={handleChange}/>
+                        <Label htmlFor="45-49"> 45-49 </Label>
+                      </LabelRadioButtonContainer>
+                    </div>
+
+                    <div >
+                      <LabelRadioButtonContainer>
+                        <RadioButton id="50-54" name="agecategory" value="50-54" checked={inputs.agecategory === "50-54"} onChange={handleChange}/>
+                        <Label htmlFor="50-54"> 50-54 </Label>
+                      </LabelRadioButtonContainer>
+                    </div>
+
+                    
+                    <div >
+                      <LabelRadioButtonContainer>
+                        <RadioButton id="55-59" name="agecategory" value="55-59" checked={inputs.agecategory === "55-59"} onChange={handleChange}/>
+                        <Label htmlFor="55-59"> 55-59 </Label>
+                      </LabelRadioButtonContainer>
+                    </div>
+
+                    <div >
+                      <LabelRadioButtonContainer>
                         <RadioButton id="60-64" name="agecategory" value="60-64" checked={inputs.agecategory === "60-64"} onChange={handleChange}/>
                         <Label htmlFor="60-64"> 60-64 </Label>
+                      </LabelRadioButtonContainer>
+                    </div>
+
+                    <div >
+                      <LabelRadioButtonContainer>
+                        <RadioButton id="65-69" name="agecategory" value="65-69" checked={inputs.agecategory === "65-69"} onChange={handleChange}/>
+                        <Label htmlFor="65-69"> 65-69 </Label>
+                      </LabelRadioButtonContainer>
+                    </div>
+                    
+                    <div >
+                      <LabelRadioButtonContainer>
+                        <RadioButton id="70-74" name="agecategory" value="70-74" checked={inputs.agecategory === "70-74"} onChange={handleChange}/>
+                        <Label htmlFor="70-74"> 70-74 </Label>
+                      </LabelRadioButtonContainer>
+                    </div>
+
+                    <div >
+                      <LabelRadioButtonContainer>
+                        <RadioButton id="75-79" name="agecategory" value="75-79" checked={inputs.agecategory === "75-79"} onChange={handleChange}/>
+                        <Label htmlFor="75-79"> 75-79 </Label>
                       </LabelRadioButtonContainer>
                     </div>
 
@@ -806,87 +901,8 @@ const PredictorForm = () => {
                     </div>
 
                   </div>
-
-                  <div className="col-span-1 col-start-4 space-y-3 px-2">
-
-                    <div >
-                      <LabelRadioButtonContainer>
-                        <RadioButton id="25-29" name="agecategory" value="25-29" checked={inputs.agecategory === "25-29"} onChange={handleChange}/>
-                        <Label htmlFor="25-29"> 25-29 </Label>
-                      </LabelRadioButtonContainer>
-                    </div>
-
-                    <div >
-                      <LabelRadioButtonContainer>
-                        <RadioButton id="45-49" name="agecategory" value="45-49" checked={inputs.agecategory === "45-49"} onChange={handleChange}/>
-                        <Label htmlFor="45-49"> 45-49 </Label>
-                      </LabelRadioButtonContainer>
-                    </div>
-
-                    <div >
-                      <LabelRadioButtonContainer>
-                        <RadioButton id="65-69" name="agecategory" value="65-69" checked={inputs.agecategory === "65-69"} onChange={handleChange}/>
-                        <Label htmlFor="65-69"> 65-69 </Label>
-                      </LabelRadioButtonContainer>
-                    </div>
-
-                  </div>
-
-                  <div className="col-span-1 col-start-5 space-y-3 px-2">
-
-                    <div >
-                      <LabelRadioButtonContainer>
-                        <RadioButton id="30-34" name="agecategory" value="30-34" checked={inputs.agecategory === "30-34"} onChange={handleChange}/>
-                        <Label htmlFor="30-34"> 30-34 </Label>
-                      </LabelRadioButtonContainer>
-                    </div>
-
-                    <div >
-                      <LabelRadioButtonContainer>
-                        <RadioButton id="50-54" name="agecategory" value="50-54" checked={inputs.agecategory === "50-54"} onChange={handleChange}/>
-                        <Label htmlFor="50-54"> 50-54 </Label>
-                      </LabelRadioButtonContainer>
-                    </div>
-
-                    <div >
-                      <LabelRadioButtonContainer>
-                        <RadioButton id="70-74" name="agecategory" value="70-74" checked={inputs.agecategory === "70-74"} onChange={handleChange}/>
-                        <Label htmlFor="70-74"> 70-74 </Label>
-                      </LabelRadioButtonContainer>
-                    </div>
-
-                  </div>
-
-                  <div className="col-span-1 col-start-6 space-y-3 px-2">
-
-                    <div >
-                      <LabelRadioButtonContainer>
-                        <RadioButton id="35-39" name="agecategory" value="35-39" checked={inputs.agecategory === "35-39"} onChange={handleChange}/>
-                        <Label htmlFor="35-39"> 35-39 </Label>
-                      </LabelRadioButtonContainer>
-                    </div>
-
-                    <div >
-                      <LabelRadioButtonContainer>
-                        <RadioButton id="55-59" name="agecategory" value="55-59" checked={inputs.agecategory === "55-59"} onChange={handleChange}/>
-                        <Label htmlFor="55-59"> 55-59 </Label>
-                      </LabelRadioButtonContainer>
-                    </div>
-
-                    <div >
-                      <LabelRadioButtonContainer>
-                        <RadioButton id="75-79" name="agecategory" value="75-79" checked={inputs.agecategory === "75-79"} onChange={handleChange}/>
-                        <Label htmlFor="75-79"> 75-79 </Label>
-                      </LabelRadioButtonContainer>
-                    </div>
-
-                  </div>
-
-
-                </div>
-                                
+                </div>                               
               </div>
-
             </div>
         </div>
 
