@@ -6,14 +6,11 @@ app=Flask(__name__)
 
 model = joblib.load('heart_disease_model.pkl')
 
-@app.route("/")
-def index():
-    return "Hello World"
-
 @app.route("/predict", methods=['POST'])
 def predict():
     data = request.get_json(force=True)
 
+    #ensures that the incomming data is converted to the correct order and contains only the values (array of values)
     features = [
         data['BMI'],
         data['Smoking'],

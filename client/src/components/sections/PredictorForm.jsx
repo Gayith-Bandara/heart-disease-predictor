@@ -69,49 +69,49 @@ const PredictorForm = () => {
     
     if(name === "firstname" || name === "lastname"){
       if(!/^[A-Za-z]+$/.test(value.trim())){
-        error = "Name should only contain letters";
+        error = "*should only contain letters";
       }
     }
 
     if(name === "email"){
       if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())){
-        error = "Nmail should be in the correct format";
+        error = "*should be in the correct format";
       }
     }
 
     if(name === "bmi" && value.trim() !== ""){
-      const num = parseFloat(value);
-      
+      const num = Number(value);
+
       if(isNaN(num)){
-        error = "BMI must be a number";
+        error = "*BMI must be a number";
       }else if( num > 80 || num < 10){
-        error = "Please enter a valid BMI"
+        error = "*please enter a valid BMI"
       }
     }
 
     if(name === "phealth" || name === "mhealth"){
-      const num = parseFloat(value);
+      const num = Number(value);
 
       if(isNaN(num)){
-        error = "Should be a number";
+        error = "*should be a number";
       }else if( num > 30 || num < 0){
-        error = "Should be a number from 0 to 30"
+        error = "*should be a number from 0 to 30"
       }
     }
 
     if(name === "sleep"){
-      const num = parseFloat(value);
+      const num = Number(value);
 
       if(isNaN(num)){
-        error = "Should be a number";
+        error = "*should be a number";
       }else if( num < 1 || num > 16){
-        error = "Enter realistic sleep hours"
+        error = "*enter realistic sleep hours"
       }
     }
 
     if(name === "firstname" || name === "email" || name === "bmi" || name === "phealth" || name === "mhealth" || name === "sleep"){
       if(value.trim() === ""){
-        error = "This input field is required";
+        error = "*required";
       }
     }else{
       if(value.trim() === ""){
@@ -144,7 +144,7 @@ const PredictorForm = () => {
         if(name === "lastname"){
           continue;
         }
-        setErrors(values => ({...values, [name]:"This field is required"}));
+        setErrors(values => ({...values, [name]:"*required"}));
       }
     }
   }
@@ -152,11 +152,12 @@ const PredictorForm = () => {
   //checks whether there are any pending errors
   const checkForErrors = () => {
     for (let key in errors){
-      if(!errors[key]){
+      if(errors[key]){
+        console.log(key + errors[key]);
         return true;
       }
     }
-    return true;
+    return false;
   }
 
   return (
@@ -422,7 +423,7 @@ const PredictorForm = () => {
                 
                 {/* radio button options */}
                 <div className="grid grid-cols-6">
-                  <div className="grid grid-cols-4 col-span-6 sm:col-start-3 space-y-3 sm:px-2">
+                  <div className="grid grid-cols-4 col-span-6 sm:col-start-3 space-y-3  sm:px-2">
 
                     <div>
                       <LabelRadioButtonContainer>
@@ -431,7 +432,7 @@ const PredictorForm = () => {
                       </LabelRadioButtonContainer>
                     </div>
 
-                    <div>
+                    <div className="col-span-2">
                       <LabelRadioButtonContainer>
                         <RadioButton id="sex-female" name="sex" value="female" checked={inputs.sex === "female"} onChange={handleChange}/>
                         <Label htmlFor="sex-female"> Female </Label>
