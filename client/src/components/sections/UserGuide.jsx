@@ -11,11 +11,6 @@ const content = [
     description:
       "Accurately enter your details, make sure you fill each field as accurately as you can and make sure you fill all entries.",
     content: (
-      // <div className="flex h-full w-full items-center justify-center object-cover">
-      //   <img src="src/assets/form-light-mode.png" className="dark:hidden" alt="Logo Light" />
-      //   <img src="src/assets/form-dark-mode.png" className="hidden dark:block" alt="Logo Dark" />
-      // </div>
-
       <div className="
         flex h-screen w-full items-center justify-center 
         bg-contain bg-center lg:bg-cover bg-center
@@ -29,11 +24,6 @@ const content = [
     description:
       "Once all the entries are filled as accurately as possible, press on the check button and wait for the magic to happen",
     content: (
-      // <div className="flex h-full w-full items-center justify-center">
-      //   <img src="src/assets/button-light-mode.png" className="dark:hidden" alt="Logo Light" />
-      //   <img src="src/assets/button-dark-mode.png" className="hidden dark:block" alt="Logo Dark" />
-      // </div>
-
       <div className="flex h-screen w-full items-center justify-center 
         bg-contain bg-center lg:bg-cover bg-center 
         dark:bg-[url('src/assets/button-dark-mode.png')] 
@@ -46,9 +36,10 @@ const content = [
     description:
       "Its that simple, find out whether you are in the green zone or red zone",
     content: (
-      <div
-        className="flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] text-white">
-        Running out of content
+      <div className="flex h-screen w-full items-center justify-center 
+        bg-contain bg-center lg:bg-cover bg-center 
+        dark:bg-[url('src/assets/result-dark-mode.png')] 
+        bg-[url('src/assets/result-light-mode.png')]">
       </div>
     ),
   },
@@ -90,17 +81,17 @@ export const StickyScroll = ({
   });
 
 
-  const linearGradients = [
-    "linear-gradient(to bottom right, white, red)", 
-    "linear-gradient(to bottom right, white, red)", 
-    "linear-gradient(to bottom right, white, red)", 
-  ];
+  // const linearGradients = [
+  //   "linear-gradient(to bottom right, white, red)", 
+  //   "linear-gradient(to bottom right, white, red)", 
+  //   "linear-gradient(to bottom right, white, red)", 
+  // ];
 
-  const [backgroundGradient, setBackgroundGradient] = useState(linearGradients[0]);
+  // const [backgroundGradient, setBackgroundGradient] = useState(linearGradients[0]);
 
-  useEffect(() => {
-    setBackgroundGradient(linearGradients[activeCard % linearGradients.length]);
-  }, [activeCard]);
+  // useEffect(() => {
+  //   setBackgroundGradient(linearGradients[activeCard % linearGradients.length]);
+  // }, [activeCard]);
 
   return (
     <motion.div
@@ -140,7 +131,7 @@ export const StickyScroll = ({
         </div>
       </div>
       <div
-        style={{ background: backgroundGradient }}
+        // style={{ background: backgroundGradient }}
         className={cn(
           "sticky top-15 hidden h-170 w-170 overflow-hidden rounded-md bg-white lg:block",
           contentClassName

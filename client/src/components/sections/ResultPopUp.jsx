@@ -3,7 +3,9 @@
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 
 export default function Result({open, onClose, content}) {
-  console.log(content);
+  console.log(content.userData.firstName);
+  const haveHeartDisease = content.prediction.prediction === 0 ? false : true;
+  
   return (
     <div>
       {/* <button onClick={() => setOpen(true)} className="rounded-md bg-white/10 px-2.5 py-1.5 text-sm font-semibold text-white inset-ring inset-ring-white/5 hover:bg-white/20">
@@ -47,7 +49,7 @@ export default function Result({open, onClose, content}) {
         </div> */}
 
         <div open={open} onClose={onClose} className='fixed inset-0 z-30 w-screen overflow-y-auto'>
-            <div className='relative z-[60] mx-auto my-4 h-fit max-w-5xl rounded-3xl bg-slate-50 p-4 font-sans md:p-10 dark:bg-neutral-900'>
+            <div className='relative z-[60] mx-auto my-8 h-fit max-w-5xl rounded-3xl bg-slate-50 p-4 font-sans md:p-10 dark:bg-neutral-900'>
                 {/* Close button */}
                 <button className="sticky cursor-pointer top-4 right-0 ml-auto flex h-8 w-8 items-center justify-center rounded-full bg-black dark:bg-white"onClick={() => onClose(false)}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="text-white dark:text-black" viewBox="0 0 16 16">
@@ -56,14 +58,65 @@ export default function Result({open, onClose, content}) {
                 </button>
 
                 {/* Content */}
-                <div className='flex flex-col md:flex-row'>
-                    <div className='invisible md:visible'>
-                        <img src="src/assets/Positive-Result.png" className="w-xs" alt="logo" />
+                <div className='flex flex-col md:flex-row text-start'>
+                    <div className='hidden md:block my-auto'>
+                        {
+                          haveHeartDisease ? 
+                          <img src="src/assets/Negative-Result.png" className="w-sm" alt="logo" /> :
+                          <img src="src/assets/Positive-Result.png" className="w-sm" alt="logo" />
+                        }
                     </div>
 
                     <div className='px-5'>
-                        <p className='mt-4 text-2xl font-semibold text-neutral-700 md:text-5xl dark:text-white'>HI</p>
-                        <p className='text-base font-medium text-black dark:text-white'>Hello</p>
+                      <div>
+                        { 
+                        haveHeartDisease ?
+                          <div className="p-6 bg-red-50 dark:bg-red-900 rounded-lg shadow-md">
+                            <h2 className="text-xl md:text-2xl font-bold text-red-700 dark:text-red-200 mb-3">
+                              Possible Heart Disease Risk
+                            </h2>
+                            <p className="text-gray-700 dark:text-gray-100 mb-4">
+                              Our analysis suggests that you may be at risk of heart disease. This is
+                              <span className="font-semibold"> not a medical diagnosis</span>. Please
+                              consult with a qualified healthcare professional for proper evaluation
+                              and guidance.
+                            </p>
+                            <ul className="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-100 mb-4">
+                              <li>Engage in regular moderate exercise (e.g., brisk walking 30 minutes a day).</li>
+                              <li>Reduce fatty, processed, and fried foods.</li>
+                              <li>Maintain a healthy weight with balanced nutrition.</li>
+                              <li>Limit alcohol consumption and avoid smoking.</li>
+                              <li>Manage stress with relaxation techniques like yoga or meditation.</li>
+                            </ul>
+                            <p className="text-sm text-gray-600 dark:text-gray-300 italic">
+                              Only a doctor can provide a reliable diagnosis and treatment plan
+                              tailored to you.
+                            </p>
+                          </div> 
+                            :
+                          <div className="p-6 bg-green-50 dark:bg-green-900 rounded-lg shadow-md">
+                            <h2 className="text-xl md:text-2xl font-bold text-green-700 dark:text-green-200 mb-3">
+                              Low Heart Disease Risk
+                            </h2>
+                            <p className="text-gray-700 dark:text-gray-100 mb-4">
+                              Our analysis suggests that you are{" "}
+                              <span className="font-semibold">not currently at high risk</span> of heart
+                              disease. This is <span className="font-semibold">not a medical diagnosis</span>. 
+                              Regular checkups with a healthcare professional are still important.
+                            </p>
+                            <ul className="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-100 mb-4">
+                              <li>Stay active with regular exercise such as walking, cycling, or swimming.</li>
+                              <li>Eat more vegetables, fruits, whole grains, and lean proteins.</li>
+                              <li>Cut down on salt, sugar, and saturated fat.</li>
+                              <li>Get enough sleep and manage stress effectively.</li>
+                              <li>Avoid smoking and limit alcohol intake.</li>
+                            </ul>
+                            <p className="text-sm text-gray-600 dark:text-gray-300 italic">
+                              Prevention is key — healthy habits today can help reduce risks tomorrow.
+                            </p>
+                          </div>
+                        }
+                      </div>
                     </div>
                     
                 </div>
