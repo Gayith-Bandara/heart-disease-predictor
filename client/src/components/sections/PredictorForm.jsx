@@ -123,10 +123,20 @@ const PredictorForm = () => {
 
   // This validates fields at submit
   const validateForm = () => {
-    // check for empty fields
-    emptyFieldValidation();
 
-    if(checkForErrors()){
+    let foundEmpty = false;
+
+    for (let name in inputs){
+      if(!inputs[name]){
+        if(name === "lastname"){
+          continue;
+        }
+        foundEmpty = true;
+        setErrors(values => ({...values, [name]:"*required"}));
+      }
+    }
+
+    if(checkForErrors() || foundEmpty){
       console.log("Errors found");
       console.log(errors);
       scrollToTop();
@@ -134,18 +144,6 @@ const PredictorForm = () => {
     }else{
       console.log("no errors found");
       return true;
-    }
-  }
-
-  //sets error messages if the input field is empty
-  const emptyFieldValidation = () => {
-    for (let name in inputs){
-      if(!inputs[name]){
-        if(name === "lastname"){
-          continue;
-        }
-        setErrors(values => ({...values, [name]:"*required"}));
-      }
     }
   }
 
@@ -444,41 +442,6 @@ const PredictorForm = () => {
                                 
               </div>
 
-              {/* Diabetes */}
-              <div className="flex flex-col my-5">
-                
-                {/* title and desicription */}
-                <div className="grid grid-cols-6 my-5">
-                  <Label htmlFor="diabetes" error={errors.diabetes} className="col-span-6 sm:col-span-2 pr-2 leading-4">Do You Have Diabetes?</Label>              
-
-                  <div className="col-span-6 sm:col-span-4">
-                    <p className="mt-1 text-start text-sm/6 text-gray-600 dark:text-neutral-300">Have you been diagnosed with diabetes or prediabetes by a healthcare professional?</p>
-                  </div>
-                </div>
-                
-                {/* radio button options */}
-                <div className="grid grid-cols-6">
-                  <div className="grid grid-cols-4 col-span-6 sm:col-start-3 space-y-3 sm:px-2">
-
-                    <div>
-                      <LabelRadioButtonContainer>
-                        <RadioButton id="diabetes-yes" name="diabetes" value="yes" checked={inputs.diabetes === "yes"} onChange={handleChange}/>
-                        <Label htmlFor="diabetes-yes"> Yes </Label>
-                      </LabelRadioButtonContainer>
-                    </div>
-
-                    <div>
-                      <LabelRadioButtonContainer>
-                        <RadioButton id="diabetes-no" name="diabetes" value="no" checked={inputs.diabetes === "no"} onChange={handleChange}/>
-                        <Label htmlFor="diabetes-no"> No </Label>
-                      </LabelRadioButtonContainer>
-                    </div>
-
-                  </div>
-                </div>
-                                
-              </div>
-
               {/* Exercise */}
               <div className="flex flex-col my-5">
                 
@@ -621,6 +584,55 @@ const PredictorForm = () => {
                                 
               </div>
 
+              {/* Diabetes */}
+              <div className="flex flex-col my-5">
+                
+                {/* title and desicription */}
+                <div className="grid grid-cols-6 my-5">
+                  <Label htmlFor="diabetes" error={errors.diabetes} className="col-span-6 sm:col-span-2 pr-2 leading-4">Do You Have Diabetes?</Label>              
+
+                  <div className="col-span-6 sm:col-span-4">
+                    <p className="mt-1 text-start text-sm/6 text-gray-600 dark:text-neutral-300">Have you been diagnosed with diabetes or prediabetes by a healthcare professional?</p>
+                  </div>
+                </div>
+                
+                {/* radio button options */}
+                <div className="sm:grid sm:grid-cols-6">
+                  <div className="flex flex-wrap space-x-5 space-y-4 sm:flex-none sm:col-start-3 sm:col-span-4">
+
+                    <div>
+                      <LabelRadioButtonContainer>
+                        <RadioButton id="yes" name="diabetes" value="yes" checked={inputs.diabetes === "yes"} onChange={handleChange}/>
+                        <Label htmlFor="yes"> Yes </Label>
+                      </LabelRadioButtonContainer>
+                    </div>
+
+                    <div>
+                      <LabelRadioButtonContainer>
+                        <RadioButton id="no" name="diabetes" value="no" checked={inputs.diabetes === "no"} onChange={handleChange}/>
+                        <Label htmlFor="no"> No </Label>
+                      </LabelRadioButtonContainer>
+                    </div>
+
+                    <div>
+                      <LabelRadioButtonContainer>
+                        <RadioButton id="no, borderline diabetes" name="diabetes" value="no, borderline diabetes" checked={inputs.diabetes === "no, borderline diabetes"} onChange={handleChange}/>
+                        <Label htmlFor="no, borderline diabetes"> No, borderline diabetes </Label>
+                      </LabelRadioButtonContainer>
+                    </div>
+
+                    <div>
+                      <LabelRadioButtonContainer>
+                        <RadioButton id="yes (during pregnancy)" name="diabetes" value="yes (during pregnancy)" checked={inputs.diabetes === "yes (during pregnancy)"} onChange={handleChange}/>
+                        <Label htmlFor="yes (during pregnancy)"> Yes (during pregnancy) </Label>
+                      </LabelRadioButtonContainer>
+                    </div>
+
+                  </div>
+                </div>
+                                
+              </div>
+
               {/* Race */}
               <div className="flex flex-col my-5">
                 
@@ -703,53 +715,6 @@ const PredictorForm = () => {
                 <div className="sm:grid sm:grid-cols-6">
                   {/* grid sm:grid-cols-6 */}
                   <div className="flex flex-wrap space-x-5 space-y-4 sm:flex-none sm:col-start-3 sm:col-span-4">
-
-                    {/* <div className="col-span-1 sm:col-start-3 space-y-3 px-2">
-
-                      <div>
-                        <LabelRadioButtonContainer>
-                          <RadioButton id="excellent" name="genhealth" value="excellent" checked={inputs.genhealth === "excellent"} onChange={handleChange}/>
-                          <Label htmlFor="excellent"> Excellent </Label>
-                        </LabelRadioButtonContainer>
-                      </div>
-
-                      <div>
-                        <LabelRadioButtonContainer>
-                          <RadioButton id="fair" name="genhealth" value="fair" checked={inputs.genhealth === "fair"} onChange={handleChange}/>
-                          <Label htmlFor="fair"> Fair </Label>
-                        </LabelRadioButtonContainer>
-                      </div>
-
-                    </div> */}
-
-                    {/* <div className="col-span-1 sm:col-start-4 space-y-3 px-2">
-
-                      <div>
-                        <LabelRadioButtonContainer>
-                          <RadioButton id="very-good" name="genhealth" value="very-good" checked={inputs.genhealth === "very-good"} onChange={handleChange}/>
-                          <Label htmlFor="very-good"> Very good </Label>
-                        </LabelRadioButtonContainer>
-                      </div>
-
-                      <div>
-                        <LabelRadioButtonContainer>
-                          <RadioButton id="poor" name="genhealth" value="poor" checked={inputs.genhealth === "poor"} onChange={handleChange}/>
-                          <Label htmlFor="poor"> Poor </Label>
-                        </LabelRadioButtonContainer>
-                      </div>
-
-                    </div> */}
-
-                    {/* <div className="col-span-2 sm:col-start-5 space-y-3 px-2">
-
-                      <div>
-                        <LabelRadioButtonContainer>
-                          <RadioButton id="good" name="genhealth" value="good" checked={inputs.genhealth === "good"} onChange={handleChange}/>
-                          <Label htmlFor="good"> Good </Label>
-                        </LabelRadioButtonContainer>
-                      </div>
-
-                    </div> */}
                     
                       <div>
                         <LabelRadioButtonContainer>
