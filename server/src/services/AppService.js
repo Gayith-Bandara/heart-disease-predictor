@@ -1,6 +1,5 @@
 
 export const parseRequest = async (data) => {
-  
   const userData = {
     'firstName': data?.firstname || "",
     'lastName': data?.lastname || "",
