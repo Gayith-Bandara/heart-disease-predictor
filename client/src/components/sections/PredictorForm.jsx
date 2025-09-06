@@ -8,9 +8,13 @@ import { useState } from 'react';
 import Error from "../ui/form-components/Error";
 import { scroller } from "react-scroll";
 import { submit } from "../../service/PredictorFormService";
+import Result from "./ResultPopUp";
+import { Dialog } from '@headlessui/react'
 
 const PredictorForm = () => {
   
+  const [open, setOpen] = useState(false)
+
   const [inputs, setInputs] = useState({
     firstname : "",
     lastname : "",
@@ -36,12 +40,16 @@ const PredictorForm = () => {
   
   const [errors, setErrors] = useState({});
 
+  const [result, setResult] = useState({});
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Form submitted");
     console.log(inputs);
     if(validateForm()){
       const res = await submit(inputs);
+      setResult(res);
+      setOpen(true);
       console.log("Success : " + res);
     }
   };
@@ -210,8 +218,8 @@ const PredictorForm = () => {
 
             </div>
 
-          {/* bio data for predicting */}
-          <div className="mb-4 py-10" >
+            {/* bio data for predicting */}
+            <div className="mb-4 py-10" >
 
               {/* title and descritpion */}
               <div className="text-start mb-10">
@@ -878,37 +886,8 @@ const PredictorForm = () => {
           Do I have heart disease ??? &rarr;
           <BottomGradient />
         </button>
-
-
-        {/* <div className="flex flex-col space-y-4">
-          <button
-            className="group/btn shadow-input relative flex h-10 w-full items-center justify-start space-x-2 rounded-md bg-gray-50 px-4 font-medium text-black dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_#262626]"
-            type="submit">
-            <IconBrandGithub className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
-            <span className="text-sm text-neutral-700 dark:text-neutral-300">
-              GitHub
-            </span>
-            <BottomGradient />
-          </button>
-          <button
-            className="group/btn shadow-input relative flex h-10 w-full items-center justify-start space-x-2 rounded-md bg-gray-50 px-4 font-medium text-black dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_#262626]"
-            type="submit">
-            <IconBrandGoogle className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
-            <span className="text-sm text-neutral-700 dark:text-neutral-300">
-              Google
-            </span>
-            <BottomGradient />
-          </button>
-          <button
-            className="group/btn shadow-input relative flex h-10 w-full items-center justify-start space-x-2 rounded-md bg-gray-50 px-4 font-medium text-black dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_#262626]"
-            type="submit">
-            <IconBrandOnlyfans className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
-            <span className="text-sm text-neutral-700 dark:text-neutral-300">
-              OnlyFans
-            </span>
-            <BottomGradient />
-          </button>
-        </div> */}
+        
+        {open && <Result open={open} onClose={setOpen} content={result} />}
       </form>
     </div>
   );

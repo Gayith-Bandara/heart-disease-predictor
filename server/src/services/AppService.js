@@ -1,5 +1,5 @@
 
-export const parseRequest = async (data) => {
+export const parseRequest = (data) => {
   const userData = {
     'firstName': data?.firstname || "",
     'lastName': data?.lastname || "",
@@ -26,11 +26,11 @@ export const parseRequest = async (data) => {
     'agecategory': data?.agecategory || ""
   };
 
-  const formattedHealthData = await formatHealthData(healthData);
+  const formattedHealthData = formatHealthData(healthData);
   return { userData, formattedHealthData};
 };
 
-const formatHealthData = async (healthData) => {
+const formatHealthData = (healthData) => {
   let bmi = Number(healthData.bmi);
   let phealth = Number(healthData.phealth);
   let mhealth = Number(healthData.mhealth);
@@ -180,4 +180,14 @@ const formatHealthData = async (healthData) => {
   };
  
   return result;
-}
+};
+
+export const parseResult = (userData, healthData, prediction) => {
+  
+  return (
+    {
+      "userData" : userData,
+      "prediction" : prediction,
+      "healthData" : healthData
+    });
+};

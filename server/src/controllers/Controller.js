@@ -1,13 +1,12 @@
-import { parseRequest } from "../services/AppService.js";
+import { parseRequest, parseResult } from "../services/AppService.js";
 import { mlService } from "../services/MLService.js";
 
 export const predict = async (req, res, next) => {
   try {
-    console.log(req.body);
-    const { userData, formattedHealthData } = await parseRequest(req.body);
+    const { userData, formattedHealthData } = parseRequest(req.body);
     const prediction = await mlService.predict(formattedHealthData);
-    console.log(prediction);
-    res.status(200).json({ message: "Hello World" });
+    const result = parseResult(userData, formattedHealthData, prediction);
+    res.status(200).json(result);
   } catch (error) {
     next(error);
   }
