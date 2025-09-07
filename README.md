@@ -17,7 +17,7 @@ It helps individuals assess their risk and provides lifestyle suggestions for be
 ## 🛠 Tech Stack
 - **Frontend:** React, TailwindCSS  
 - **Backend API:** Node.js, Express.js  
-- **ML Service:** Python, scikit-learn  
+- **ML Service:** Python, XGBClassifier  
 
 ---
 
