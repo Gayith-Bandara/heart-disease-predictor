@@ -7,11 +7,11 @@ const Testimonials = () => {
   return (
     <div
       className="pb-10 pt-5 rounded-md flex flex-col antialiased bg-white dark:bg-black dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden" name="testimonials">
-      <h2 className="relative z-10 mx-auto max-w-4xl text-center text-xl font-bold text-gray-700 md:text-2xl lg:text-4xl dark:text-gray-300 py-10">
+      {/* <h2 className="relative z-10 mx-auto max-w-4xl text-center text-xl font-bold text-gray-700 md:text-2xl lg:text-4xl dark:text-gray-300 py-10">
         See what other users think
-      </h2>
+      </h2> */}
       <InfiniteMovingCards items={testimonialsOne} direction="right" speed="slow" />
-      <InfiniteMovingCards items={testimonialsTwo} direction="right" speed="normal" />
+      {/* <InfiniteMovingCards items={testimonialsTwo} direction="right" speed="normal" /> */}
     </div>
   );
 }

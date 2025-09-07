@@ -80,25 +80,9 @@ export const StickyScroll = ({
     setActiveCard(closestBreakpointIndex);
   });
 
-
-  // const linearGradients = [
-  //   "linear-gradient(to bottom right, white, red)", 
-  //   "linear-gradient(to bottom right, white, red)", 
-  //   "linear-gradient(to bottom right, white, red)", 
-  // ];
-
-  // const [backgroundGradient, setBackgroundGradient] = useState(linearGradients[0]);
-
-  // useEffect(() => {
-  //   setBackgroundGradient(linearGradients[activeCard % linearGradients.length]);
-  // }, [activeCard]);
-
   return (
     <motion.div
-      // animate={{
-      //   backgroundColor: backgroundColors[activeCard % backgroundColors.length],
-      // }}
-      //h-[30rem] overflow-y-auto
+
       className="relative flex justify-center space-x-10 rounded-md p-20"
       ref={ref}>
       <div className="div relative flex items-start px-4">

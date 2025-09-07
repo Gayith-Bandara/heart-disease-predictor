@@ -6,7 +6,7 @@ const Hero = () => {
   return (
     <div className="relative mx-auto my-1 flex max-w-7xl flex-col " name="hero">
 
-      <div className="size-50 rounded-full mx-auto pt-10">
+      <div className="hidden 2xl:block size-50 rounded-full mx-auto pt-10">
           <img src="src/assets/logo.png" alt="logo" />
       </div>
 
@@ -66,9 +66,9 @@ const Hero = () => {
             Explore Now
           </button>
 
-          <button className="relative w-60 transform rounded-lg border border-gray-300 bg-white px-6 py-2 font-medium text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 dark:border-gray-700 dark:bg-black dark:text-white dark:hover:bg-gray-900">
+          {/* <button className="relative w-60 transform rounded-lg border border-gray-300 bg-white px-6 py-2 font-medium text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 dark:border-gray-700 dark:bg-black dark:text-white dark:hover:bg-gray-900">
             Contact Support
-          </button>
+          </button> */}
 
         </motion.div>
 
